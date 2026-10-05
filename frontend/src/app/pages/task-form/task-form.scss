@@ -1,0 +1,26 @@
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 720px;
+}
+
+// Priority, status and due date side by side; wraps on small screens
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  mat-form-field {
+    flex: 1 1 180px;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.error {
+  color: var(--mat-sys-error);
+}

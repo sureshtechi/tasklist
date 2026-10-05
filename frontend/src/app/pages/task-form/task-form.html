@@ -1,0 +1,67 @@
+<h2>{{ taskId ? 'Edit task' : 'New task' }}</h2>
+
+@if (errorMessage()) {
+  <p class="error">{{ errorMessage() }}</p>
+}
+
+@if (loading()) {
+  <mat-spinner diameter="40" />
+} @else {
+  <form [formGroup]="form" (ngSubmit)="save()" novalidate>
+    <mat-form-field>
+      <mat-label>Task title</mat-label>
+      <input matInput formControlName="title" />
+      <mat-error>{{ fieldError('title') }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" rows="3"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Employee</mat-label>
+      <mat-select formControlName="assigned_to">
+        @for (employee of employees(); track employee.id) {
+          <mat-option [value]="employee.id">{{ employee.name }}</mat-option>
+        }
+      </mat-select>
+      <mat-error>{{ fieldError('assigned_to') }}</mat-error>
+    </mat-form-field>
+
+    <div class="row">
+      <mat-form-field>
+        <mat-label>Priority</mat-label>
+        <mat-select formControlName="priority">
+          @for (priority of priorities; track priority) {
+            <mat-option [value]="priority">{{ priority }}</mat-option>
+          }
+        </mat-select>
+        <mat-error>{{ fieldError('priority') }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+          @for (status of statuses; track status) {
+            <mat-option [value]="status">{{ status }}</mat-option>
+          }
+        </mat-select>
+        <mat-error>{{ fieldError('status') }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Due date</mat-label>
+        <input matInput type="date" formControlName="due_date" [min]="minDueDate" />
+        <mat-error>{{ fieldError('due_date') }}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="actions">
+      <a mat-button routerLink="/tasks">Cancel</a>
+      <button mat-flat-button type="submit" [disabled]="saving()">
+        {{ saving() ? 'Saving...' : taskId ? 'Update task' : 'Create task' }}
+      </button>
+    </div>
+  </form>
+}

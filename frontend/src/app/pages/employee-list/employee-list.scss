@@ -1,0 +1,16 @@
+// Lets the table scroll sideways on small screens
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.error {
+  color: var(--mat-sys-error);
+}
+
+.empty {
+  color: var(--mat-sys-on-surface-variant);
+}

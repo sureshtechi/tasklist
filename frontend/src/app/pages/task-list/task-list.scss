@@ -1,0 +1,33 @@
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Filters sit in a row and wrap onto new lines on small screens
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
+
+  mat-form-field {
+    flex: 1 1 200px;
+  }
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.error {
+  color: var(--mat-sys-error);
+}
+
+.empty {
+  color: var(--mat-sys-on-surface-variant);
+}
